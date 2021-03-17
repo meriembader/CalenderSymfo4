@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DispoAh{% endblock %}
+
+{% block body %}
+    <h1>DispoAh</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dispo_ah.id }}</td>
+            </tr>
+            <tr>
+                <th>Refto_med_id</th>
+                <td>{{ dispo_ah.reftoMedId }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ dispo_ah.titre }}</td>
+            </tr>
+            <tr>
+                <th>Debut</th>
+                <td>{{ dispo_ah.debut ? dispo_ah.debut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fin</th>
+                <td>{{ dispo_ah.fin ? dispo_ah.fin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Descp</th>
+                <td>{{ dispo_ah.descp }}</td>
+            </tr>
+            <tr>
+                <th>All_day</th>
+                <td>{{ dispo_ah.allDay ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('dispo_ah_index') }}">back to list</a>
+
+    <a href="{{ path('dispo_ah_edit', {'id': dispo_ah.id}) }}">edit</a>
+
+    {{ include('dispo_ah/_delete_form.html.twig') }}
+{% endblock %}
