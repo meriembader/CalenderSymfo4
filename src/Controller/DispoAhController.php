@@ -34,58 +34,29 @@ class DispoAhController extends AbstractController
     /**
      * @Route("/calendar", name="dispoAh_calendar", methods={"GET"})
      */
-    public function calendar(?dispoAh $calendar, Request $request)
+    public function calendar(DispoAhRepository $dispoAhRepository )
+
     {
-        // On récupère les données
-        $donnees = json_decode($request->getContent());
+        $events = $dispoAhRepository->findAll();
 
-        if(
-            isset($donnees->title) && !empty($donnees->title) &&
-            isset($donnees->start) && !empty($donnees->start) &&
-            isset($donnees->description) && !empty($donnees->description)
-        ){
-            // Les données sont complètes
-            // On initialise un code
-            $code = 200;
+        $rdvs = [];
 
-            // On vérifie si l'id existe
-            if(!$calendar){
-                // On instancie un rendez-vous
-                $calendar = new DispoAh();
+        foreach ($events as $event) {
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'start' => $event->getDebut()->format('Y-m-d H:i:s'),
+                'end' => $event->getFin()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitre(),
+                'description' => $event->getDescp(),
 
-                // On change le code
-                $code = 201;
-            }
-
-            // On hydrate l'objet avec les données
-            $calendar->setTitre($donnees->title);
-            $calendar->setDescp($donnees->description);
-            $calendar->setDebut(new DateTime($donnees->start));
-            if($donnees->allDay){
-                $calendar->setFin(new DateTime($donnees->start));
-            }else{
-                $calendar->setFin(new DateTime($donnees->end));
-            }
-            $calendar->setAllDay($donnees->allDay);
-
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($calendar);
-            $em->flush();
-
-            // On retourne le code
-            return new Response('Ok', $code);
-        }else{
-            // Les données sont incomplètes
-            return new Response('Données incomplètes', 404);
+                'allDay' => $event->getAllDay(),
+            ];
         }
 
+        $data = json_encode($rdvs);
 
-        return $this->render('dispo_ah/calendar.html.twig', [
-            'controller_name' => 'DispoAhController',
-        ]);
+        return $this->render('dispo_ah/calendar.html.twig', compact('data'));
     }
-
 
 /**
      * @Route("/new", name="dispo_ah_new", methods={"GET","POST"})
