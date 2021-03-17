@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DispoAh{% endblock %}
+
+{% block body %}
+    <h1>Create new DispoAh</h1>
+
+    {{ include('dispo_ah/_form.html.twig') }}
+
+    <a href="{{ path('dispo_ah_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DispoAh{% endblock %}
+
+{% block body %}
+    <h1>Edit DispoAh</h1>
+
+    {{ include('dispo_ah/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('dispo_ah_index') }}">back to list</a>
+
+    {{ include('dispo_ah/_delete_form.html.twig') }}
+{% endblock %}
