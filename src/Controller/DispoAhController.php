@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DispoAhController extends AbstractController
 {
     /**
-     * @Route("/", name="dispo_ah_index", methods={"GET"})
+     * @Route("/calendar", name="dispoAh_calendar", methods={"GET"})
      */
     public function index(DispoAhRepository $dispoAhRepository): Response
     {
