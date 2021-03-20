@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DispoAhController extends AbstractController
 {
     /**
-     * @Route("/calendar", name="dispoAh_calendar", methods={"GET"})
+     * @Route("/calen", name="dispoAh_calendar", methods={"GET"})
      */
     public function index(DispoAhRepository $dispoAhRepository): Response
     {
@@ -25,7 +25,7 @@ class DispoAhController extends AbstractController
         ]);
     }
     /**
-     * @Route("/calendar1", name="dispoAh_calendar", methods={"GET"})
+     * @Route("/calendar", name="dispoAh_calendar", methods={"GET"})
      */
     public function calendar1(): Response
     {
