@@ -1,4 +1,3 @@
-{% extends 'base.html.twig' %}
 
 {% block body %}
     <a href="{{ path('dispo_ah_new') }}">Create new dispo_Ah</a>
@@ -27,7 +26,7 @@
                 editable: true,
                 eventSources: [
                     {
-                        url: "{{ path('fc_load_events') }}",
+                        url: "{{ path('dispoAh_load') }}",
                         method: "POST",
                         extraParams: {
                             filters: JSON.stringify({})

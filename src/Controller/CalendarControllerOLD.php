@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CalendarController extends AbstractController
+class CalendarControllerOLD extends AbstractController
 {
     /**
      * * @param $id_doc
