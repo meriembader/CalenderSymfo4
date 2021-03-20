@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DispoAhController extends AbstractController
 {
     /**
-     * @Route("/calendar", name="dispoAh_calendar", methods={"GET"})
+     * @Route("/calendarrrr", name="dispoAh_calendar", methods={"GET"})
      */
     public function index(DispoAhRepository $dispoAhRepository): Response
     {
@@ -72,7 +72,7 @@ class DispoAhController extends AbstractController
             $entityManager->persist($dispoAh);
             $entityManager->flush();
 
-            return $this->redirectToRoute('dispo_ah_index');
+            return $this->redirectToRoute('dispoAh_calendar');
         }
 
         return $this->render('dispo_ah/new.html.twig', [

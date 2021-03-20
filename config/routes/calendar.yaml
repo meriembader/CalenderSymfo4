@@ -1,4 +1,4 @@
 fc_load_events:
-  path: /fc-load-events
+  path: /dispoAh_calendar
   defaults:
     _controller: CalendarBundle\Controller\CalendarController:loadAction
