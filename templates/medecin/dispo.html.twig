@@ -7,18 +7,18 @@
 
     <table class="table">
         <thead>
-            <tr>
+        <tr>
 
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Email</th>
-                <th>Telephone</th>
-                <th>Address</th>
-                <th>Specialite</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>debut</th>
+            <th>fin</th>
+
+            <th>Specialite</th>
 
 
-                <th>actions</th>
-            </tr>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for medecin in medecins %}
@@ -38,6 +38,10 @@
 
                 </td>
 
+                <td>
+                    <a href="{{ path('dispo_ah_show',  {'id': dispo_ah.id}) }}">afficher profil</a>
+
+                </td>
 
 
             </tr>

@@ -91,4 +91,27 @@ class MedecinController extends AbstractController
 
         return $this->redirectToRoute('medecin_index');
     }
+
+
+
+
+    /**
+     * @Route("/dispoo", name="dispoAh_calendar", methods={"GET"})
+     */
+
+    public function Dispo() {
+        $connection = new PDO('mysql:dbname=techhealth;host=127.0.0.1','root','');
+        $builder = new Builder($connection);
+
+        $builder
+            ->query("SELECT medecin.nom, medecin.prenom, dispo_ah.debut, dispo_ah.fin from medecin, dispo_ah WHERE medecin.id = dispo_ah.refto_med_id");
+
+
+
+
+
+        return $this->render('medecin/calendar.html.twig');
+    }
+
+
 }
