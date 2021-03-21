@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medecin{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Medecin</h1>
+    <table class="table">
+        <tbody>
+
+
+            <tr>
+                <th>Nom</th>
+                <td>{{ medecin.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ medecin.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ medecin.cin }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ medecin.age }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ medecin.email }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ medecin.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ medecin.address }}</td>
+            </tr>
+            <tr>
+                <th>Specialite</th>
+                <td>{{ medecin.specialite }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ medecin.status }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ medecin.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('dispoAh_calendar') }}">Disponibilité</a>
+    <a href="{{ path('medecin_index') }}">back to list</a>
+</div>
+
+
+{% endblock %}
