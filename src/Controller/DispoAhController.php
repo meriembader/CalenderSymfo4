@@ -15,26 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DispoAhController extends AbstractController
 {
+
+
     /**
-     * @Route("/calen", name="dispoAh_calendar", methods={"GET"})
+     * @Route("/calendar", name="dispo_ah_index", methods={"GET"})
      */
-    public function index(DispoAhRepository $dispoAhRepository): Response
-    {
-        return $this->render('dispo_ah/index.html.twig', [
-            'dispo_ahs' => $dispoAhRepository->findAll(),
-        ]);
-    }
-    /**
-     * @Route("/calendar", name="dispoAh_calendar", methods={"GET"})
-     */
-    public function calendar1(): Response
-    {
-        return $this->render('dispo_ah/calendar.html.twig');
-    }
-    /**
-     * @Route("/calendar", name="dispoAh_calendar", methods={"GET"})
-     */
-    public function calendar(DispoAhRepository $dispoAhRepository )
+    public function index(DispoAhRepository $dispoAhRepository )
 
     {
         $events = $dispoAhRepository->findAll();
@@ -44,6 +30,7 @@ class DispoAhController extends AbstractController
         foreach ($events as $event) {
             $rdvs[] = [
                 'id' => $event->getId(),
+                'refto_med_id'=> $event->getReftoMedId(),
                 'start' => $event->getDebut()->format('Y-m-d H:i:s'),
                 'end' => $event->getFin()->format('Y-m-d H:i:s'),
                 'title' => $event->getTitre(),
@@ -55,7 +42,7 @@ class DispoAhController extends AbstractController
 
         $data = json_encode($rdvs);
 
-        return $this->render('dispo_ah/calendar.html.twig', compact('data'));
+        return $this->render('dispo_ah/index.html.twig', compact('data'));
     }
 
 /**
