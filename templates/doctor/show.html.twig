@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Doctor{% endblock %}
+
+{% block body %}
+    <h1>Doctor</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ doctor.id }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ doctor.cin }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ doctor.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ doctor.Prenom }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ doctor.Age }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ doctor.Email }}</td>
+            </tr>
+            <tr>
+                <th>PhoneNumber</th>
+                <td>{{ doctor.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ doctor.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ doctor.Password }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ doctor.status ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Specialite</th>
+                <td>{{ doctor.specialite }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ doctor.price }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ doctor.Description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('doctor_index') }}">back to list</a>
+
+    <a href="{{ path('doctor_edit', {'id': doctor.id}) }}">edit</a>
+
+    {{ include('doctor/_delete_form.html.twig') }}
+{% endblock %}
