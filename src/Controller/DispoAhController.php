@@ -26,7 +26,7 @@ class DispoAhController extends AbstractController
 
     {
 
-     /*   $events = $dispoAhRepository->findBy(['refto_med_id' => $id->getId()]);
+        $events = $dispoAhRepository->findBy(['refto_med_id' => $id->getId()]);
 
         $rdvs = [];
 
@@ -37,14 +37,15 @@ class DispoAhController extends AbstractController
                 'start' => $event->getDebut()->format('Y-m-d H:i:s'),
                 'end' => $event->getFin()->format('Y-m-d H:i:s'),
                 'title' => $event->getTitre(),
-                'description' => $event->getDescp(),
+                'descp' => $event->getDescp(),
                 'allDay' => $event->getAllDay(),
+
             ];
         }
 
         $data = json_encode($rdvs);
 
-        return $this->render('dispo_ah/calendar.html.twig', compact('data'));*/
+        return $this->render('dispo_ah/calendar.html.twig', compact('data'));
     }
 
     /**
@@ -83,7 +84,7 @@ class DispoAhController extends AbstractController
                 'start' => $event->getDebut()->format('Y-m-d H:i:s'),
                 'end' => $event->getFin()->format('Y-m-d H:i:s'),
                 'title' => $event->getTitre(),
-                'description' => $event->getDescp(),
+                'descp' => $event->getDescp(),
 
                 'allDay' => $event->getAllDay(),
             ];
@@ -197,9 +198,8 @@ class DispoAhController extends AbstractController
         if(
             isset($donnees->title) && !empty($donnees->title) &&
             isset($donnees->start) && !empty($donnees->start) &&
-            isset($donnees->description) && !empty($donnees->description)&&
-            isset($donnees->end) && !empty($donnees->end)&&
-            isset($donnees->refto_med_id) && !empty($donnees->refto_med_id)
+            isset($donnees->descp) && !empty($donnees->descp)&&
+            isset($donnees->end) && !empty($donnees->end)
         ){
             // Les données sont complètes
             // On initialise un code
@@ -216,8 +216,8 @@ class DispoAhController extends AbstractController
 
             // On hydrate l'objet avec les données
             $dispoAh->setTitre($donnees->titre);
-            $dispoAh->setDescp($donnees->description);
-            $dispoAh->setReftoMedId($donnees->refto_med_id);
+            $dispoAh->setDescp($donnees->descp);
+
             $dispoAh->setDebut(new DateTime($donnees->start));
             if($donnees->allDay){
                 $dispoAh->setFin(new DateTime($donnees->start));

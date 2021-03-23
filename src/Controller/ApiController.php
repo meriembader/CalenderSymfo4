@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Calendar;
+use App\Entity\DispoAh;
 use App\Entity\Disponibilite;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +26,7 @@ class ApiController extends AbstractController
     /**
      * @Route("/api/{id}/edit", name="api_event_edit", methods={"PUT"})
      */
-    public function majEvent(?Disponibilite $calendar, Request $request)
+    public function majEvent(?DispoAh $dispoAh, Request $request)
     {
         // On récupère les données
         $donnees = json_decode($request->getContent());
@@ -33,43 +34,39 @@ class ApiController extends AbstractController
         if(
             isset($donnees->title) && !empty($donnees->title) &&
             isset($donnees->start) && !empty($donnees->start) &&
-            isset($donnees->description) && !empty($donnees->description) &&
-            isset($donnees->backgroundColor) && !empty($donnees->backgroundColor) &&
-            isset($donnees->borderColor) && !empty($donnees->borderColor) &&
-            isset($donnees->textColor) && !empty($donnees->textColor)
+            isset($donnees->descp) && !empty($donnees->descp)&&
+            isset($donnees->end) && !empty($donnees->end)
         ){
             // Les données sont complètes
             // On initialise un code
             $code = 200;
 
             // On vérifie si l'id existe
-            if(!$calendar){
+            if(!$dispoAh){
                 // On instancie un rendez-vous
-                $calendar = new Disponibilite();
+                $dispoAh = new DispoAh();
 
                 // On change le code
                 $code = 201;
             }
 
             // On hydrate l'objet avec les données
-            $calendar->setTitre($donnees->title);
-            $calendar->setDescp($donnees->description);
-            $calendar->setDebut(new DateTime($donnees->start));
+            $dispoAh->setTitre($donnees->title);
+            $dispoAh->setDescp($donnees->descp);
+            $dispoAh->setDebut(new DateTime($donnees->start));
             if($donnees->allDay){
-                $calendar->setFin(new DateTime($donnees->start));
+                $dispoAh->setFin(new DateTime($donnees->start));
             }else{
-                $calendar->setFin(new DateTime($donnees->end));
+                $dispoAh->setFin(new DateTime($donnees->end));
             }
-            $calendar->setAllDay($donnees->allDay);
-            $calendar->setBackgroundColor($donnees->backgroundColor);
-            $calendar->setBorderColor($donnees->borderColor);
-            $calendar->setTextColor($donnees->textColor);
+            $dispoAh->setAllDay($donnees->allDay);
+
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($calendar);
+            $em->persist($dispoAh);
             $em->flush();
 
-            // On retourne le code
+            // On retourne le code  ;
             return new Response('Ok', $code);
         }else{
             // Les données sont incomplètes
@@ -77,8 +74,7 @@ class ApiController extends AbstractController
         }
 
 
-        return $this->render('api/index.html.twig', [
-            'controller_name' => 'ApiController',
-        ]);
+        return $this->redirectToRoute('dispo_ah_index');
     }
+
 }
