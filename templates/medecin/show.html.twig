@@ -53,9 +53,41 @@
         </tbody>
     </table>
 
-    <a href="{{ path('dispo_ah_index') }}">Disponibilité</a>
+    <a class="dispo" href="{{ path('dispo_ah_indexA', {id: medecin.id}) }}" type="button" data-id="{{ medecin.id }}" >Disponibilité</a>
     <a href="{{ path('medecin_index') }}">back to list</a>
 </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/router.js') }}"></script>
 
+    <script src="{{ asset('assets/js/fos_js_routes.js') }}"></script>
+
+
+
+    <script>
+        url_momo = Routing.generate('momo');
+        $(document).ready(function () {
+            $('.dispo').on('click', function () {
+                var id = $(this).attr("data-id")
+                var medId =$(".medId").val(id)
+                $.ajax({
+                    url: url_momo,
+                    type: "POST",
+                    data:{
+                        medId: medId,
+                    },
+
+                    cache: false,
+                    success: function (data) {
+
+                    },
+                    error: function (error) {
+                    }
+                })
+
+            });
+
+        });
+
+    </script>
 
 {% endblock %}
