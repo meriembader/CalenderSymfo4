@@ -20,6 +20,11 @@ class DispoAh
     /**
      * @ORM\Column(type="integer")
      */
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Medecin::class, inversedBy="DispoAhs")
+     */
     private $refto_med_id;
 
     /**
@@ -52,12 +57,12 @@ class DispoAh
         return $this->id;
     }
 
-    public function getReftoMedId(): ?int
+    public function getReftoMedId(): ?Medecin
     {
         return $this->refto_med_id;
     }
 
-    public function setReftoMedId(int $refto_med_id): self
+    public function setReftoMedId(?Medecin $refto_med_id): self
     {
         $this->refto_med_id = $refto_med_id;
 

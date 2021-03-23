@@ -39,16 +39,18 @@
             })
 
             calendar.on('eventChange', (e) => {
-                // let url = `/api/${e.event.id}/edit`
+               console.log(e.event.id)
+                 let url = `/api/${e.event.id}/edit`
+                // let url = `/${e.event.id}/edit`
                 let donnees = {
                    "title": e.event.title,
                     "refto_med_id": e.event.refto_med_id,
                     "description": e.event.extendedProps.description,
-                    "start": e.event.start,
-                    "end": e.event.end,
-
+                    "debut": e.event.debut,
+                    "fin": e.event.end,
                     "allDay": e.event.allDay
                 }
+                console.log(donnees)
 
                 let xhr = new XMLHttpRequest
 
