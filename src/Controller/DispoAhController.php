@@ -26,7 +26,7 @@ class DispoAhController extends AbstractController
 
     {
 
-        $events = $dispoAhRepository->findBy(['refto_med_id' => $id->getId()]);
+     /*   $events = $dispoAhRepository->findBy(['refto_med_id' => $id->getId()]);
 
         $rdvs = [];
 
@@ -44,7 +44,7 @@ class DispoAhController extends AbstractController
 
         $data = json_encode($rdvs);
 
-        return $this->render('dispo_ah/calendar.html.twig', compact('data'));
+        return $this->render('dispo_ah/calendar.html.twig', compact('data'));*/
     }
 
     /**
